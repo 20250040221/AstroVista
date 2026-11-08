@@ -52,8 +52,8 @@ The design focuses on:
 - Clear presentation of information
 
 📂 Project Structure
-
-'''AstroVista/
+```text
+AstroVista/
 │
 ├── css/
 ├── images/
@@ -68,8 +68,8 @@ The design focuses on:
 │
 ├── Project Documentation/
 ├── README.md
-└── sky-events.html'''
-
+└── sky-events.html
+```
 💻 How to Run Locally
 
 Follow these steps to run AstroVista on your computer.
