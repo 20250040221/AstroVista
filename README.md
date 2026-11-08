@@ -53,7 +53,7 @@ The design focuses on:
 
 📂 Project Structure
 
-AstroVista/
+'''AstroVista/
 │
 ├── css/
 ├── images/
@@ -68,7 +68,7 @@ AstroVista/
 │
 ├── Project Documentation/
 ├── README.md
-└── sky-events.html
+└── sky-events.html'''
 
 💻 How to Run Locally
 
