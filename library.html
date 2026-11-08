@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Astronomy Library & Educational Guides | AstroVista</title>
+  <meta name="description" content="Comprehensive astronomy knowledge repository covering observational techniques, telescope optics, astrophysics, black holes, and cosmology.">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Custom Master Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       TOP TELEMETRY LIVE TICKER
+       ========================================== -->
+  <div class="cosmic-ticker-bar">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div id="cosmicTickerTime" class="d-flex align-items-center flex-wrap">
+        <span class="cosmic-ticker-item">
+          <span class="ticker-dot"></span>
+          <strong>AstroVista Station:</strong> Online
+        </span>
+      </div>
+      <div class="d-flex align-items-center gap-3 font-space small">
+        <span class="text-muted d-none d-sm-inline">Scientific Knowledge Base</span>
+        <a href="planner.html" class="text-cyan text-decoration-none"><i class="bi bi-compass me-1"></i>Quick Planner</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MAIN NAVIGATION BAR
+       ========================================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-astrovista sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="images/logo.svg" alt="AstroVista Logo" class="navbar-brand-img">
+      </a>
+      
+      <button class="navbar-toggler navbar-toggler-astro" type="button" data-bs-toggle="collapse" data-bs-target="#astroNavbar" aria-controls="astroNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-4"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="astroNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="index.html">
+              <i class="bi bi-house"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="planets.html">
+              <i class="bi bi-globe"></i> Solar System
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="sky-events.html">
+              <i class="bi bi-calendar3"></i> Sky Events
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="planner.html">
+              <i class="bi bi-clock-history"></i> Planner
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="journal.html">
+              <i class="bi bi-journal-bookmark"></i> Journal
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro active" href="library.html">
+              <i class="bi bi-book"></i> Library
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="about.html">
+              <i class="bi bi-info-circle"></i> About
+            </a>
+          </li>
+        </ul>
+
+        <div class="ms-lg-3 mt-3 mt-lg-0">
+          <a href="planner.html" class="btn btn-astro-primary btn-astro-sm">
+            <i class="bi bi-binoculars me-1"></i> Plan Stargazing
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO / INTRO SECTION
+       ========================================== -->
+  <header class="section-py pb-3">
+    <div class="container text-center">
+      <div class="mb-3">
+        <span class="badge-astro">
+          <i class="bi bi-journal-album"></i> Educational Repository
+        </span>
+      </div>
+      <h1 class="section-title">Astronomy Educational Library</h1>
+      <p class="section-desc">
+        A curated compendium of astrophysics articles, observational guides, optical engineering primers,
+        and cosmology foundations designed to empower both beginning stargazers and advanced researchers.
+      </p>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       SEARCH & CATEGORY FILTERS
+       ========================================== -->
+  <section class="mb-4">
+    <div class="container">
+      <div class="card-astro p-3">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-5">
+            <div class="search-box-wrapper">
+              <i class="bi bi-search"></i>
+              <input type="text" id="librarySearchInput" class="form-control form-control-astro" placeholder="Search guides by keyword, topic, optics, formulas...">
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="filter-nav mb-0 justify-content-lg-end">
+              <button class="filter-btn library-filter-btn active" data-filter="all">All Guides (6)</button>
+              <button class="filter-btn library-filter-btn" data-filter="beginner">Beginner Guides</button>
+              <button class="filter-btn library-filter-btn" data-filter="telescopes">Telescopes & Optics</button>
+              <button class="filter-btn library-filter-btn" data-filter="stars">Stars & Nebulae</button>
+              <button class="filter-btn library-filter-btn" data-filter="blackholes">Black Holes</button>
+              <button class="filter-btn library-filter-btn" data-filter="cosmology">Cosmology</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       LIBRARY ARTICLES GRID
+       ========================================== -->
+  <main class="section-py pt-2 pb-5">
+    <div class="container">
+      <div class="row" id="libraryGrid">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-astrovista">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <a href="index.html" class="d-inline-block mb-3">
+            <img src="images/logo.svg" alt="AstroVista" height="40">
+          </a>
+          <p class="small text-muted mb-3">
+            AstroVista is an interactive astronomy discovery platform designed to explore celestial bodies, plan night-sky observations, and record astronomy field journals.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="#" class="social-icon-btn" aria-label="Github"><i class="bi bi-github"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Discord"><i class="bi bi-discord"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="footer-heading">Platform</h6>
+          <ul class="footer-links small">
+            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+            <li><a href="planets.html"><i class="bi bi-chevron-right"></i> Solar System</a></li>
+            <li><a href="sky-events.html"><i class="bi bi-chevron-right"></i> Sky Events</a></li>
+            <li><a href="planner.html"><i class="bi bi-chevron-right"></i> Observation Planner</a></li>
+            <li><a href="journal.html"><i class="bi bi-chevron-right"></i> Journal</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="footer-heading">Knowledge</h6>
+          <ul class="footer-links small">
+            <li><a href="library.html"><i class="bi bi-chevron-right"></i> Astronomy Library</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-right"></i> About Project</a></li>
+            <li><a href="about.html#principles"><i class="bi bi-chevron-right"></i> UI/UX Principles</a></li>
+            <li><a href="library.html"><i class="bi bi-chevron-right"></i> Telescope Guides</a></li>
+            <li><a href="sky-events.html"><i class="bi bi-chevron-right"></i> Meteor Showers</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4">
+          <h6 class="footer-heading">Stargazing Alerts</h6>
+          <p class="small text-muted mb-3">
+            Subscribe for upcoming astronomical alerts including meteor showers, planetary conjunctions, and eclipses.
+          </p>
+          <form id="newsletterForm" class="d-flex gap-2">
+            <input type="email" class="form-control form-control-astro form-control-sm" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-astro-primary btn-astro-sm">
+              <i class="bi bi-send"></i>
+            </button>
+          </form>
+          <div class="mt-2 text-dim small" style="font-size: 0.72rem;">
+            * Demonstrative notification system. No real spam.
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small text-muted">
+        <div>
+          © 2026 <strong>AstroVista</strong>. All rights reserved.
+        </div>
+        <div>
+          Designed & Developed by <strong>Maneesha Kalpani</strong>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AstroVista Master Script -->
+  <script src="js/script.js"></script>
+</body>
+</html>

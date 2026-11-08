@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observation Planner | AstroVista</title>
+  <meta name="description" content="Design and structure your astronomical observation sessions. Validate optical equipment, dark sky sites, coordinates, and save to your observation journal.">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  
+  <!-- Custom Master Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       TOP TELEMETRY LIVE TICKER
+       ========================================== -->
+  <div class="cosmic-ticker-bar">
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div id="cosmicTickerTime" class="d-flex align-items-center flex-wrap">
+        <span class="cosmic-ticker-item">
+          <span class="ticker-dot"></span>
+          <strong>AstroVista Station:</strong> Online
+        </span>
+      </div>
+      <div class="d-flex align-items-center gap-3 font-space small">
+        <span class="text-muted d-none d-sm-inline">Mission Log Generator</span>
+        <a href="journal.html" class="text-cyan text-decoration-none"><i class="bi bi-journal-bookmark me-1"></i>View Journal</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       MAIN NAVIGATION BAR
+       ========================================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-astrovista sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <img src="images/logo.svg" alt="AstroVista Logo" class="navbar-brand-img">
+      </a>
+      
+      <button class="navbar-toggler navbar-toggler-astro" type="button" data-bs-toggle="collapse" data-bs-target="#astroNavbar" aria-controls="astroNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="bi bi-list fs-4"></i>
+      </button>
+
+      <div class="collapse navbar-collapse" id="astroNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-1">
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="index.html">
+              <i class="bi bi-house"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="planets.html">
+              <i class="bi bi-globe"></i> Solar System
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="sky-events.html">
+              <i class="bi bi-calendar3"></i> Sky Events
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro active" href="planner.html">
+              <i class="bi bi-clock-history"></i> Planner
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="journal.html">
+              <i class="bi bi-journal-bookmark"></i> Journal
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="library.html">
+              <i class="bi bi-book"></i> Library
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-astro" href="about.html">
+              <i class="bi bi-info-circle"></i> About
+            </a>
+          </li>
+        </ul>
+
+        <div class="ms-lg-3 mt-3 mt-lg-0">
+          <a href="journal.html" class="btn btn-astro-outline btn-astro-sm">
+            <i class="bi bi-journal-check me-1"></i> My Journal
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO / INTRO SECTION
+       ========================================== -->
+  <header class="section-py pb-3">
+    <div class="container text-center">
+      <div class="mb-3">
+        <span class="badge-astro">
+          <i class="bi bi-compass"></i> Night Sky Session Architecture
+        </span>
+      </div>
+      <h1 class="section-title">Observation Planner</h1>
+      <p class="section-desc">
+        Formulate, calibrate, and record your astronomical stargazing sessions. Enter your intended targets,
+        observing coordinates, optical configurations, and seeing forecasts. Saved entries persist directly to your local journal.
+      </p>
+
+      <!-- Quick Preset Buttons for Testing & Usability -->
+      <div class="d-flex flex-wrap justify-content-center gap-2 mb-2">
+        <span class="text-muted small align-self-center me-2 font-space">Quick Presets:</span>
+        <button type="button" class="btn btn-astro-outline btn-astro-sm" id="btnPresetJupiter">
+          <i class="bi bi-magic me-1"></i> Jupiter & Moons
+        </button>
+        <button type="button" class="btn btn-astro-outline btn-astro-sm" id="btnPresetOrion">
+          <i class="bi bi-magic me-1"></i> Orion Nebula (M42)
+        </button>
+        <button type="button" class="btn btn-astro-outline btn-astro-sm" id="btnPresetPerseids">
+          <i class="bi bi-magic me-1"></i> Perseid Meteors
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       SUCCESS BANNER (HIDDEN INITIALLY)
+       ========================================== -->
+  <div class="container d-none mb-4" id="saveSuccessBanner">
+    <div class="alert alert-success bg-success bg-opacity-20 border-success border-opacity-50 text-light p-3 rounded-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-2">
+        <i class="bi bi-check-circle-fill text-success fs-4"></i>
+        <div>
+          <strong class="font-space text-white">Observation Saved Successfully!</strong>
+          <div class="small text-muted">Your planned stargazing session has been recorded into your local journal storage.</div>
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="journal.html" class="btn btn-astro-primary btn-astro-sm">
+          <i class="bi bi-journal-bookmark me-1"></i> Open Journal
+        </a>
+        <button type="button" class="btn btn-astro-outline btn-astro-sm" onclick="document.getElementById('saveSuccessBanner').classList.add('d-none')">
+          Dismiss
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       PLANNER MAIN FORM & LIVE PREVIEW
+       ========================================== -->
+  <main class="section-py pt-0 pb-5">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Left Column: Comprehensive Planning Form -->
+        <div class="col-lg-7">
+          <div class="card card-astro">
+            <div class="card-astro-header d-flex justify-content-between align-items-center">
+              <h5 class="font-space text-white mb-0">
+                <i class="bi bi-pencil-square text-info me-2"></i>Session Parameters Form
+              </h5>
+              <span class="badge bg-secondary bg-opacity-25 text-light small">HTML5 & JS Validated</span>
+            </div>
+            <div class="card-astro-body">
+              <form id="plannerForm" novalidate>
+                <div class="row g-3">
+                  <!-- Title -->
+                  <div class="col-12">
+                    <label for="planTitle" class="form-astro-label">
+                      <i class="bi bi-fonts text-info"></i> Observation Title *
+                    </label>
+                    <input type="text" class="form-control form-control-astro" id="planTitle" placeholder="e.g. Lunar Terminator & Clavius Crater Survey" required>
+                    <div class="invalid-feedback text-danger small">Please enter a concise title for this observation.</div>
+                  </div>
+
+                  <!-- Object Name & Category -->
+                  <div class="col-md-7">
+                    <label for="planObject" class="form-astro-label">
+                      <i class="bi bi-bullseye text-warning"></i> Celestial Object / Target *
+                    </label>
+                    <input type="text" class="form-control form-control-astro" id="planObject" placeholder="e.g. Saturn, M31 Andromeda, Moon" required>
+                    <div class="invalid-feedback text-danger small">Please specify the celestial target.</div>
+                  </div>
+                  <div class="col-md-5">
+                    <label for="planCategory" class="form-astro-label">
+                      <i class="bi bi-tags text-cyan"></i> Target Classification *
+                    </label>
+                    <select class="form-select form-select-astro" id="planCategory" required>
+                      <option value="Planets">Planetary Body</option>
+                      <option value="Deep Sky">Deep Sky Object (Nebula/Galaxy)</option>
+                      <option value="Meteor Showers">Meteor Shower</option>
+                      <option value="Lunar">Lunar Feature</option>
+                      <option value="Solar">Solar Observation</option>
+                      <option value="Constellations">Constellation & Asterism</option>
+                    </select>
+                  </div>
+
+                  <!-- Date & Time -->
+                  <div class="col-md-6">
+                    <label for="planDate" class="form-astro-label">
+                      <i class="bi bi-calendar-event text-info"></i> Observation Date *
+                    </label>
+                    <input type="date" class="form-control form-control-astro" id="planDate" required>
+                    <div class="invalid-feedback text-danger small">Please pick an observation date.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="planTime" class="form-astro-label">
+                      <i class="bi bi-clock text-info"></i> Target Time (Local / UTC) *
+                    </label>
+                    <input type="time" class="form-control form-control-astro" id="planTime" required>
+                    <div class="invalid-feedback text-danger small">Please select the intended time window.</div>
+                  </div>
+
+                  <!-- Location -->
+                  <div class="col-12">
+                    <label for="planLocation" class="form-astro-label">
+                      <i class="bi bi-geo-alt text-danger"></i> Observation Site / Coordinates *
+                    </label>
+                    <input type="text" class="form-control form-control-astro" id="planLocation" placeholder="e.g. Mount Ciremai Basecamp, West Java (Bortle 3)" required>
+                    <div class="invalid-feedback text-danger small">Please provide the observation site location.</div>
+                  </div>
+
+                  <!-- Equipment -->
+                  <div class="col-md-8">
+                    <label for="planEquipment" class="form-astro-label">
+                      <i class="bi bi-binoculars text-primary"></i> Optics & Telescope Equipment *
+                    </label>
+                    <input type="text" class="form-control form-control-astro" id="planEquipment" placeholder="e.g. Celestron 8SE SCT + 12mm Dual-ED + UHC Filter" required>
+                    <div class="invalid-feedback text-danger small">Please list your observation optics or equipment.</div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="planSeeing" class="form-astro-label">
+                      <i class="bi bi-brightness-high text-warning"></i> Atmospheric Seeing
+                    </label>
+                    <select class="form-select form-select-astro" id="planSeeing">
+                      <option value="5">5/5 - Perfect (Superb)</option>
+                      <option value="4" selected>4/5 - Good Transparency</option>
+                      <option value="3">3/5 - Average Seeing</option>
+                      <option value="2">2/5 - Poor / Hazy</option>
+                      <option value="1">1/5 - Severely Degraded</option>
+                    </select>
+                  </div>
+
+                  <!-- Notes -->
+                  <div class="col-12">
+                    <label for="planNotes" class="form-astro-label">
+                      <i class="bi bi-journal-text text-light"></i> Session Objectives & Field Notes *
+                    </label>
+                    <textarea class="form-control form-control-astro" id="planNotes" rows="4" placeholder="Detail your scientific objectives: e.g. Sketch crater rims, resolve double star separation, record meteor counts per 15 min..." required></textarea>
+                    <div class="invalid-feedback text-danger small">Please write some observational goals or field notes.</div>
+                  </div>
+
+                  <!-- Submit and Reset Buttons -->
+                  <div class="col-12 d-flex flex-wrap gap-2 pt-2">
+                    <button type="submit" class="btn btn-astro-primary flex-grow-1" id="btnSavePlan">
+                      <i class="bi bi-save2 me-1"></i> Save Observation Plan
+                    </button>
+                    <button type="button" class="btn btn-astro-outline" id="btnResetPlanner">
+                      <i class="bi bi-arrow-counterclockwise me-1"></i> Reset Form
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Real-time Live Synchronous Preview Card -->
+        <div class="col-lg-5">
+          <div class="preview-card">
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-3 border-bottom border-secondary border-opacity-25">
+              <span class="badge bg-info bg-opacity-25 text-cyan border border-info border-opacity-50 font-space">
+                <i class="bi bi-broadcast me-1"></i> Live Card Preview
+              </span>
+              <span class="text-dim small font-space">Synced to Form</span>
+            </div>
+
+            <div id="livePreviewCard">
+              <!-- Dynamically populated in real-time as user types -->
+            </div>
+
+            <!-- Stargazing Checklist Accordion / Tips -->
+            <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+              <h6 class="font-space text-white mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Observer's Field Checklist</h6>
+              <ul class="list-unstyled small text-muted mb-0">
+                <li class="mb-1"><i class="bi bi-check text-cyan me-1"></i>Allow 30 minutes for ocular dark adaptation.</li>
+                <li class="mb-1"><i class="bi bi-check text-cyan me-1"></i>Use dim red lights to protect retinal rhodopsin.</li>
+                <li class="mb-1"><i class="bi bi-check text-cyan me-1"></i>Verify telescope mirror or lens thermal equilibrium.</li>
+                <li class="mb-0"><i class="bi bi-check text-cyan me-1"></i>Log all findings immediately into your journal.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer-astrovista">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-lg-4">
+          <a href="index.html" class="d-inline-block mb-3">
+            <img src="images/logo.svg" alt="AstroVista" height="40">
+          </a>
+          <p class="small text-muted mb-3">
+            AstroVista is an interactive astronomy discovery platform designed to explore celestial bodies, plan night-sky observations, and record astronomy field journals.
+          </p>
+          <div class="d-flex gap-2">
+            <a href="#" class="social-icon-btn" aria-label="Github"><i class="bi bi-github"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Discord"><i class="bi bi-discord"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="footer-heading">Platform</h6>
+          <ul class="footer-links small">
+            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+            <li><a href="planets.html"><i class="bi bi-chevron-right"></i> Solar System</a></li>
+            <li><a href="sky-events.html"><i class="bi bi-chevron-right"></i> Sky Events</a></li>
+            <li><a href="planner.html"><i class="bi bi-chevron-right"></i> Observation Planner</a></li>
+            <li><a href="journal.html"><i class="bi bi-chevron-right"></i> Journal</a></li>
+          </ul>
+        </div>
+
+        <div class="col-6 col-lg-2">
+          <h6 class="footer-heading">Knowledge</h6>
+          <ul class="footer-links small">
+            <li><a href="library.html"><i class="bi bi-chevron-right"></i> Astronomy Library</a></li>
+            <li><a href="about.html"><i class="bi bi-chevron-right"></i> About Project</a></li>
+            <li><a href="about.html#principles"><i class="bi bi-chevron-right"></i> UI/UX Principles</a></li>
+            <li><a href="library.html"><i class="bi bi-chevron-right"></i> Telescope Guides</a></li>
+            <li><a href="sky-events.html"><i class="bi bi-chevron-right"></i> Meteor Showers</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-4">
+          <h6 class="footer-heading">Stargazing Alerts</h6>
+          <p class="small text-muted mb-3">
+            Subscribe for upcoming astronomical alerts including meteor showers, planetary conjunctions, and eclipses.
+          </p>
+          <form id="newsletterForm" class="d-flex gap-2">
+            <input type="email" class="form-control form-control-astro form-control-sm" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-astro-primary btn-astro-sm">
+              <i class="bi bi-send"></i>
+            </button>
+          </form>
+          <div class="mt-2 text-dim small" style="font-size: 0.72rem;">
+            * Demonstrative notification system. No real spam.
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-top border-secondary border-opacity-25 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2 small text-muted">
+        <div>
+          © 2026 <strong>AstroVista</strong>. All rights reserved.
+        </div>
+        <div>
+          Designed & Developed by <strong>Maneesha Kalpani</strong>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AstroVista Master Script -->
+  <script src="js/script.js"></script>
+</body>
+</html>

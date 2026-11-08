@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="favGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="50%" stop-color="#818cf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.3"/>
+    </linearGradient>
+    <filter id="glowF" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#070b19"/>
+  <circle cx="32" cy="32" r="16" fill="url(#favGrad)" filter="url(#glowF)"/>
+  <ellipse cx="32" cy="32" rx="28" ry="8.5" stroke="url(#ringGrad)" stroke-width="3" transform="rotate(-28 32 32)"/>
+  <circle cx="53" cy="21" r="3.5" fill="#38bdf8"/>
+  <circle cx="11" cy="43" r="2.5" fill="#c084fc"/>
+  <path d="M32 10 L33.5 15 L38.5 16.5 L33.5 18 L32 23 L30.5 18 L25.5 16.5 L30.5 15 Z" fill="#ffffff"/>
+</svg>
